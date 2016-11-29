@@ -100,7 +100,7 @@ public class SignupPage extends AppCompatActivity implements SensorEventListener
         randomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                randomLatLong();
+                randomLocation();
             }
         });
 
@@ -140,7 +140,7 @@ public class SignupPage extends AppCompatActivity implements SensorEventListener
             n++;
 
             if(n == 2) {
-                randomLatLong();
+                randomLocation();
                 n = 0;
             }
         }
@@ -163,18 +163,18 @@ public class SignupPage extends AppCompatActivity implements SensorEventListener
         sensorManager.unregisterListener(this);
     }
 
-    public void randomLatLong(){
+    public void randomLocation(){
         double minLat = -85.000000;
         double maxLat = 85.000000;
-        double latitude = minLat + Math.random() * ((maxLat - minLat) + 1);
-
         double minLong = -179.999989;
         double maxLong = 179.999989;
+
+        double latitude = minLat + Math.random() * ((maxLat - minLat) + 1);
         double longitude = minLong + Math.random() * ((maxLong - minLong) + 1);
 
-        DecimalFormat decform = new DecimalFormat("#.######");
-        latitudeTxt.setText(decform.format(latitude));
-        longitudeTxt.setText(decform.format(longitude));
+        DecimalFormat df = new DecimalFormat("#.######");
+        latitudeTxt.setText(df.format(latitude));
+        longitudeTxt.setText(df.format(longitude));
     }
 
     public void getUserPass(){
